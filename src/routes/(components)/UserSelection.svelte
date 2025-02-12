@@ -15,6 +15,16 @@
   });
  
   const { form: formData, enhance } = form;
+
+  formData.update(
+  ($form) => {
+    $form.name = selectedUser.name;
+	$form.email = selectedUser.email;
+	$form.role = selectedUser.role;
+    return $form;
+  },
+  { taint: false }
+);
 </script>
 
 
@@ -26,7 +36,7 @@
 			<Form.Control>
 			  {#snippet children({ props })}
 				<Form.Label>Name</Form.Label>
-				<Input {...props} placeholder={selectedUser.name} bind:value={$formData.name} />
+				<Input {...props}  bind:value={$formData.name} />
 			  {/snippet}
 			</Form.Control>
 			<Form.Description>This is your public display name.</Form.Description>
